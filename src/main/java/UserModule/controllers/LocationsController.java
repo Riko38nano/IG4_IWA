@@ -1,9 +1,13 @@
 package UserModule.controllers;
 
 import UserModule.models.Location;
+import UserModule.models.User;
 import UserModule.repositories.LocationRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,5 +20,32 @@ public class LocationsController {
     @GetMapping
     public List<Location> list() {
         return locationRepository.findAll();
+    }
+
+    @GetMapping
+    @RequestMapping("{id}")
+    public Location get(@PathVariable Long id) {
+        if (!locationRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Location with id:" + id + "not found");
+        }
+        return locationRepository.getById(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Location create(@RequestBody final Location location) {
+        return locationRepository.saveAndFlush(location);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
+        locationRepository.deleteById(id);
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public Location update(@PathVariable Long id, @RequestBody Location location) {
+        Location existingLocation = locationRepository.getById(id);
+        BeanUtils.copyProperties(location, existingLocation, "location_id");
+        return locationRepository.saveAndFlush(existingLocation);
     }
 }

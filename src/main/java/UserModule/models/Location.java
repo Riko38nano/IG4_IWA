@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "locations")
@@ -14,8 +15,9 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long location_id;
-    private Integer latitude;
-    private Integer longitude;
+    private double latitude;
+    private double longitude;
+    private Date location_date;
 
     @ManyToMany(mappedBy = "locations")
     @JsonIgnore
@@ -29,19 +31,19 @@ public class Location {
         this.location_id = location_id;
     }
 
-    public Integer getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public Integer getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -51,5 +53,13 @@ public class Location {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Date getLocation_date() {
+        return location_date;
+    }
+
+    public void setLocation_date(Date location_date) {
+        this.location_date = location_date;
     }
 }
