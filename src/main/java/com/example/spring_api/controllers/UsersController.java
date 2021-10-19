@@ -44,6 +44,7 @@ public class UsersController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public User update(@PathVariable Long id, @RequestBody User user) {
+        //if(!user.isSet()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is laking in attributes");
         User existingUser = userRepository.getById(id);
         BeanUtils.copyProperties(user, existingUser, "user_id");
         return userRepository.saveAndFlush(existingUser);

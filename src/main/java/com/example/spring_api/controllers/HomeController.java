@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/")
@@ -15,8 +14,8 @@ public class HomeController {
     private String appVersion;
 
     @GetMapping
-    public Map<String, String> get() {
-        HashMap hashMap = new HashMap<String, String>();
+    public HashMap<String, String> get() {
+        HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("version", appVersion);
         return hashMap;
     }

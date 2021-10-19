@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name="users")
+@Entity(name = "users")
 @Access(AccessType.FIELD)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private long user_id;
     private String first_name;
     private String last_name;
     private String email;
@@ -20,8 +20,8 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "user_locations",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "location_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "location_id"))
     private List<Location> locations;
 
     public String getFirst_name() {
@@ -56,11 +56,11 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public Integer getUser_id() {
+    public long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUser_id(long user_id) {
         this.user_id = user_id;
     }
 
@@ -71,4 +71,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /*
+    public boolean isSet() {
+        return (this.getUser_id() != null) &&
+                (this.getEmail() != null) &&
+                (this.getPassword() != null) &&
+                (this.getFirst_name() != null) &&
+                (this.getPhone_number() != null) &&
+                (this.getLast_name() != null);
+    }
+     */
+
 }
