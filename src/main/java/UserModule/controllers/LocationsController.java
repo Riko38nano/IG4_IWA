@@ -1,7 +1,7 @@
-package com.example.spring_api.controllers;
+package UserModule.controllers;
 
-import com.example.spring_api.models.Location;
-import com.example.spring_api.repositories.LocationRepository;
+import UserModule.models.Location;
+import UserModule.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

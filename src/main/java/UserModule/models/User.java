@@ -1,4 +1,4 @@
-package com.example.spring_api.models;
+package UserModule.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

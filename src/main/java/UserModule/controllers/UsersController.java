@@ -1,12 +1,11 @@
-package com.example.spring_api.controllers;
+package UserModule.controllers;
 
-import com.example.spring_api.models.User;
+import UserModule.models.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.example.spring_api.repositories.UserRepository;
+import UserModule.repositories.UserRepository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
